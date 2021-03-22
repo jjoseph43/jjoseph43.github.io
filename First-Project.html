@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Onyeka Emmanuel and Jobin Joseph" />
+
+
+<title>First Project</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="First-Project.html">Beer Project</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">First Project</h1>
+<h4 class="author">Onyeka Emmanuel and Jobin Joseph</h4>
+<h4 class="date">3/5/2021</h4>
+
+</div>
+
+
+<p>Dear CEO &amp; CFO of Budweiser the purpose of this explanatory data analysis is to conduct analysis from multiple different angles, and make inferences based on the Beers and Breweries data sets that were provided. We hope that this will fuel data driven decisions on future beer launches and beers that might need to be refreshed.</p>
+<p>Libraries Used</p>
+<pre class="r"><code>#Pull in libraries
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.0.4     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ---------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggthemes)
+library(naniar)
+library(ggplot2)
+library(maps)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<pre class="r"><code>library(dplyr)
+library(mapproj)
+library(ggthemes)
+library(dplyr)
+library(tmap)</code></pre>
+<pre><code>## Warning: package &#39;tmap&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>library(tmaptools)</code></pre>
+<pre><code>## Warning: package &#39;tmaptools&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>library(ggrepel)</code></pre>
+<pre><code>## Warning: package &#39;ggrepel&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>library(class)
+library(caret)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<pre class="r"><code>library(e1071)</code></pre>
+<p>Data Sets</p>
+<pre class="r"><code>#Bring in data sets
+Beers = read.csv(file.choose(), header = T)
+Breweries = read.csv(file.choose(), header = T)
+
+#Verify data set 
+head(Beers)</code></pre>
+<pre><code>##                  Name Beer_ID   ABV IBU Brewery_id
+## 1            Pub Beer    1436 0.050  NA        409
+## 2         Devil&#39;s Cup    2265 0.066  NA        178
+## 3 Rise of the Phoenix    2264 0.071  NA        178
+## 4            Sinister    2263 0.090  NA        178
+## 5       Sex and Candy    2262 0.075  NA        178
+## 6        Black Exodus    2261 0.077  NA        178
+##                            Style Ounces
+## 1            American Pale Lager     12
+## 2        American Pale Ale (APA)     12
+## 3                   American IPA     12
+## 4 American Double / Imperial IPA     12
+## 5                   American IPA     12
+## 6                  Oatmeal Stout     12</code></pre>
+<pre class="r"><code>head(Breweries)</code></pre>
+<pre><code>##   Brew_ID                      Name          City State
+## 1       1        NorthGate Brewing    Minneapolis    MN
+## 2       2 Against the Grain Brewery    Louisville    KY
+## 3       3  Jack&#39;s Abby Craft Lagers    Framingham    MA
+## 4       4 Mike Hess Brewing Company     San Diego    CA
+## 5       5   Fort Point Beer Company San Francisco    CA
+## 6       6     COAST Brewing Company    Charleston    SC</code></pre>
+<p>QUESTION 1 How many Breweries are present in each state?</p>
+<p>Using the bar chart along with the heat map you can see and visualize the number of breweries per state. You can see that California and Colorado seem to have the most Breweries while states such as North Dakota and West Virginia have just one brewery.</p>
+<pre class="r"><code>#Check if any rows are missing the State in Breweries Data set
+gg_miss_var(Breweries)</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>Breweriesperstate = count(Breweries, State) #Count the number of breweries per state
+names(Breweriesperstate) = c(&#39;State&#39;, &#39;Number of Breweries&#39;) #Change the column names
+Breweriesperstate$State = str_remove_all(Breweriesperstate$State, &quot;\\s&quot;) #Remove white spaces
+head(Breweriesperstate) #Verify data</code></pre>
+<pre><code>##   State Number of Breweries
+## 1    AK                   7
+## 2    AL                   3
+## 3    AR                   2
+## 4    AZ                  11
+## 5    CA                  39
+## 6    CO                  47</code></pre>
+<pre class="r"><code>#Get a visual representation of Breweries per state
+Breweriesperstate %&gt;% filter(!is.na(State)) %&gt;% ggplot(aes(State, `Number of Breweries`, fill = State)) + 
+  geom_col(color = &quot;black&quot;) + geom_text(aes(label = `Number of Breweries`), vjust = -0.5) + 
+  labs(title = &#39;Number of Breweries Per State&#39;, x = &#39;State&#39;, y = &#39;Number of Breweries&#39;) + 
+  theme_economist()</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>#USMap of Breweries in each state
+country = data.frame(State = state.abb, region = state.name) #Pull in states data set
+head(country) #Verify data set</code></pre>
+<pre><code>##   State     region
+## 1    AL    Alabama
+## 2    AK     Alaska
+## 3    AZ    Arizona
+## 4    AR   Arkansas
+## 5    CA California
+## 6    CO   Colorado</code></pre>
+<pre class="r"><code>BPSmergedcountry = merge(Breweriesperstate, country, &#39;State&#39;) #Merge to have the region 
+head(BPSmergedcountry) #Verify data set</code></pre>
+<pre><code>##   State Number of Breweries     region
+## 1    AK                   7     Alaska
+## 2    AL                   3    Alabama
+## 3    AR                   2   Arkansas
+## 4    AZ                  11    Arizona
+## 5    CA                  39 California
+## 6    CO                  47   Colorado</code></pre>
+<pre class="r"><code>states = map_data(&#39;state&#39;) #Get the data with longitudes and latitudes
+states$region = str_to_title(states$region) #Capitalize the first letter in the region
+head(states) #Verify data set</code></pre>
+<pre><code>##        long      lat group order  region subregion
+## 1 -87.46201 30.38968     1     1 Alabama      &lt;NA&gt;
+## 2 -87.48493 30.37249     1     2 Alabama      &lt;NA&gt;
+## 3 -87.52503 30.37249     1     3 Alabama      &lt;NA&gt;
+## 4 -87.53076 30.33239     1     4 Alabama      &lt;NA&gt;
+## 5 -87.57087 30.32665     1     5 Alabama      &lt;NA&gt;
+## 6 -87.58806 30.32665     1     6 Alabama      &lt;NA&gt;</code></pre>
+<pre class="r"><code>statescenter = data.frame(state.center, State = state.abb, state.region, state.name) #Get the states centers
+head(statescenter) #Verify data set</code></pre>
+<pre><code>##           x       y State state.region state.name
+## 1  -86.7509 32.5901    AL        South    Alabama
+## 2 -127.2500 49.2500    AK         West     Alaska
+## 3 -111.6250 34.2192    AZ         West    Arizona
+## 4  -92.2992 34.7336    AR        South   Arkansas
+## 5 -119.7730 36.5341    CA         West California
+## 6 -105.5130 38.6777    CO         West   Colorado</code></pre>
+<pre class="r"><code>BPSmergedstatescenter = merge(BPSmergedcountry, statescenter, &#39;State&#39;) #Merge to have the state centers
+head(BPSmergedstatescenter) #Verify data set</code></pre>
+<pre><code>##   State Number of Breweries     region         x       y state.region
+## 1    AK                   7     Alaska -127.2500 49.2500         West
+## 2    AL                   3    Alabama  -86.7509 32.5901        South
+## 3    AR                   2   Arkansas  -92.2992 34.7336        South
+## 4    AZ                  11    Arizona -111.6250 34.2192         West
+## 5    CA                  39 California -119.7730 36.5341         West
+## 6    CO                  47   Colorado -105.5130 38.6777         West
+##   state.name
+## 1     Alaska
+## 2    Alabama
+## 3   Arkansas
+## 4    Arizona
+## 5 California
+## 6   Colorado</code></pre>
+<pre class="r"><code>map.df = merge(BPSmergedcountry, states, &#39;region&#39;) #Merge to have the longitude and latitudes on same data set
+map.df &lt;- map.df[order(map.df$order),] #Set the order for proper plotting
+head(map.df) #Verify data set</code></pre>
+<pre><code>##    region State Number of Breweries      long      lat group order
+## 1 Alabama    AL                   3 -87.46201 30.38968     1     1
+## 2 Alabama    AL                   3 -87.48493 30.37249     1     2
+## 6 Alabama    AL                   3 -87.52503 30.37249     1     3
+## 7 Alabama    AL                   3 -87.53076 30.33239     1     4
+## 8 Alabama    AL                   3 -87.57087 30.32665     1     5
+## 9 Alabama    AL                   3 -87.58806 30.32665     1     6
+##   subregion
+## 1      &lt;NA&gt;
+## 2      &lt;NA&gt;
+## 6      &lt;NA&gt;
+## 7      &lt;NA&gt;
+## 8      &lt;NA&gt;
+## 9      &lt;NA&gt;</code></pre>
+<pre class="r"><code>dim(map.df) #Verify dimensions for number of rows and columns</code></pre>
+<pre><code>## [1] 15527     8</code></pre>
+<pre class="r"><code>#Plot the map showing the number of breweries by state
+map.df %&gt;% ggplot(aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = `Number of Breweries`)) + 
+  geom_path(color = &quot;black&quot;) + scale_fill_gradientn(colours=rev(heat.colors(10)),na.value=&quot;grey90&quot;) + 
+  ggtitle(&quot;Number of Breweries by State&quot;) + coord_map() + xlab(&quot;Longitude&quot;) + ylab(&quot;Latitude&quot;) + 
+  with(BPSmergedstatescenter, annotate(geom = &quot;text&quot;, x = x, y = y, label = state.name, size = 3)) + 
+  theme_fivethirtyeight()</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p>QUESTION 2 Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.</p>
+<p>Using the head function, we were able to see the first 6 observations. We were also able to see the last 6 observation using the tail function.</p>
+<pre class="r"><code>#Merge Beers and Breweries datasets
+BBmerged = merge(Beers, Breweries, by.x = c(&quot;Brewery_id&quot;), by.y = c(&quot;Brew_ID&quot;))
+dim(Beers) #See number of rows in original dataset</code></pre>
+<pre><code>## [1] 2410    7</code></pre>
+<pre class="r"><code>dim(BBmerged) #Verify that the number of rows matches that in original dataset</code></pre>
+<pre><code>## [1] 2410   10</code></pre>
+<pre class="r"><code>#Rename column
+BBmerged = BBmerged %&gt;% rename(Beer_name = Name.x, Brewery_name = Name.y)
+
+#Print first six
+head(BBmerged)</code></pre>
+<pre><code>##   Brewery_id     Beer_name Beer_ID   ABV IBU
+## 1          1  Get Together    2692 0.045  50
+## 2          1 Maggie&#39;s Leap    2691 0.049  26
+## 3          1    Wall&#39;s End    2690 0.048  19
+## 4          1       Pumpion    2689 0.060  38
+## 5          1    Stronghold    2688 0.060  25
+## 6          1   Parapet ESB    2687 0.056  47
+##                                 Style Ounces       Brewery_name
+## 1                        American IPA     16 NorthGate Brewing 
+## 2                  Milk / Sweet Stout     16 NorthGate Brewing 
+## 3                   English Brown Ale     16 NorthGate Brewing 
+## 4                         Pumpkin Ale     16 NorthGate Brewing 
+## 5                     American Porter     16 NorthGate Brewing 
+## 6 Extra Special / Strong Bitter (ESB)     16 NorthGate Brewing 
+##          City State
+## 1 Minneapolis    MN
+## 2 Minneapolis    MN
+## 3 Minneapolis    MN
+## 4 Minneapolis    MN
+## 5 Minneapolis    MN
+## 6 Minneapolis    MN</code></pre>
+<pre class="r"><code>#Print the last six
+tail(BBmerged)</code></pre>
+<pre><code>##      Brewery_id                 Beer_name Beer_ID   ABV IBU
+## 2405        556             Pilsner Ukiah      98 0.055  NA
+## 2406        557  Heinnieweisse Weissebier      52 0.049  NA
+## 2407        557           Snapperhead IPA      51 0.068  NA
+## 2408        557         Moo Thunder Stout      50 0.049  NA
+## 2409        557         Porkslap Pale Ale      49 0.043  NA
+## 2410        558 Urban Wilderness Pale Ale      30 0.049  NA
+##                        Style Ounces                  Brewery_name
+## 2405         German Pilsener     12         Ukiah Brewing Company
+## 2406              Hefeweizen     12       Butternuts Beer and Ale
+## 2407            American IPA     12       Butternuts Beer and Ale
+## 2408      Milk / Sweet Stout     12       Butternuts Beer and Ale
+## 2409 American Pale Ale (APA)     12       Butternuts Beer and Ale
+## 2410        English Pale Ale     12 Sleeping Lady Brewing Company
+##               City State
+## 2405         Ukiah    CA
+## 2406 Garrattsville    NY
+## 2407 Garrattsville    NY
+## 2408 Garrattsville    NY
+## 2409 Garrattsville    NY
+## 2410     Anchorage    AK</code></pre>
+<pre class="r"><code>#Check for missing values
+gg_miss_var(BBmerged)</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>QUESTION 3 Address the missing values in each column.</p>
+<p>We tidied the data by removing the NULL values.</p>
+<pre class="r"><code>#Remove missing values
+gg_miss_var(BBmerged) #check for missing values</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>BBmergedclean = na.omit(BBmerged) #Removing missing values from data set
+gg_miss_var(BBmergedclean) #Recheck for missing values</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p>QUESTION 4 Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.</p>
+<p>Looking at the bar charts it seems like Maine has the highest median ABV and IBU. We can draw more inferences by studying the bar plot.</p>
+<pre class="r"><code>#Median ABV and IBU per state
+medABV_IBUperstate = BBmergedclean %&gt;% group_by(State) %&gt;% 
+  summarise(MedianABV = median(ABV), MedianIBU = median(IBU)) #Get the Median ABV and IBU per state</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>medABV_IBUperstate</code></pre>
+<pre><code>## # A tibble: 50 x 3
+##    State MedianABV MedianIBU
+##    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 &quot; AK&quot;    0.057       46  
+##  2 &quot; AL&quot;    0.06        43  
+##  3 &quot; AR&quot;    0.04        39  
+##  4 &quot; AZ&quot;    0.0575      20.5
+##  5 &quot; CA&quot;    0.058       42  
+##  6 &quot; CO&quot;    0.065       40  
+##  7 &quot; CT&quot;    0.061       29  
+##  8 &quot; DC&quot;    0.059       47.5
+##  9 &quot; DE&quot;    0.055       52  
+## 10 &quot; FL&quot;    0.062       55  
+## # ... with 40 more rows</code></pre>
+<pre class="r"><code>#Barplot of median ABV per state
+medABV_IBUperstate %&gt;% ggplot(aes(State, MedianABV)) + geom_col(color = &quot;blue&quot;) +
+  labs(y = &quot;Median ABV&quot;, title = &quot;Median Alcohol by Volume per State&quot;) +
+  geom_text(aes(label = MedianABV), color = &quot;blue&quot;, vjust = -0.5) + theme_fivethirtyeight()</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>#Barplot of median IBU per state
+medABV_IBUperstate %&gt;% ggplot(aes(State, MedianIBU)) + geom_col(color = &quot;red&quot;) +
+  labs(y = &quot;Median IBU&quot;, title = &quot;Median International Bitter Unit per State&quot;) +
+  geom_text(aes(label = MedianIBU), color = &quot;red&quot;, vjust = -0.5) + theme_economist()</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p>QUESTION 5 Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?</p>
+<p>Using the original data set we found that the state with the highest Alcoholic Beverage by Volume (ABV) beer is Colorado. The beer is called Lee Hill Series Vol. 5 - Belgian Style Quadrupel Ale having a ABV of 0.128. We also found that the state with the highest International Bitterness Unit (IBU) beer is Oregon. The beer is called Bitter Bitch Imperial IPA and has an IBU of 138.</p>
+<pre class="r"><code>#State with maximum ABV
+Beersabvclean = BBmerged %&gt;% drop_na(ABV) #Remove missing ABV values
+gg_miss_var(Beersabvclean) #Verify that there are no missing ABV values</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>Beersabvclean[Beersabvclean$ABV == max(Beersabvclean$ABV),] #See state with max ABV</code></pre>
+<pre><code>##     Brewery_id                                            Beer_name
+## 369         52 Lee Hill Series Vol. 5 - Belgian Style Quadrupel Ale
+##     Beer_ID   ABV IBU            Style Ounces            Brewery_name
+## 369    2565 0.128  NA Quadrupel (Quad)   19.2 Upslope Brewing Company
+##        City State
+## 369 Boulder    CO</code></pre>
+<pre class="r"><code>#State with maximum IBU
+Beersibuclean = BBmerged %&gt;% drop_na(IBU) #Remove missing IBU values
+gg_miss_var(Beersibuclean) #Verify that there are no missing IBU values</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>Beersibuclean[Beersibuclean$IBU == max(Beersibuclean$IBU),] #See state with max IBU</code></pre>
+<pre><code>##      Brewery_id                 Beer_name Beer_ID   ABV IBU
+## 1134        375 Bitter Bitch Imperial IPA     980 0.082 138
+##                               Style Ounces            Brewery_name
+## 1134 American Double / Imperial IPA     12 Astoria Brewing Company
+##         City State
+## 1134 Astoria    OR</code></pre>
+<p>QUESTION 6 Comment on the summary statistics and distribution of the ABV variable.</p>
+<p>We can see from the data that the median of the ABV in beers in the US is around 0.056 and the minimum is 0.001 and the maximum is around 0.128. Looking at the box plot we can see that it is normally distributed.</p>
+<pre class="r"><code>#See summary statistics of ABV
+summary(BBmerged$ABV)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62</code></pre>
+<pre class="r"><code>#See distribution of ABV
+BBmerged %&gt;% ggplot(aes(y = ABV)) + geom_boxplot() + 
+  labs(title = &quot;Alcohol by Volume Distribution&quot;)</code></pre>
+<pre><code>## Warning: Removed 62 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>QUESTION 7 Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot. Make your best judgment of a relationship and EXPLAIN your answer.</p>
+<p>There is a positive correlation between IBU and ABV. The correlation is strongest between the two when ABV is between 0.05 and 0.075.</p>
+<pre class="r"><code>#Scatter plot of relationship between ABV and IBU
+BBmergedclean %&gt;% ggplot(aes(ABV, IBU)) + geom_point() + geom_smooth() + ggtitle(&quot;Beer IBU vs ABV&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>QUESTION 8 Investigate the difference with respect to IBU and ABV between IPAs (India Pale Ales) and other types of Ale (any beer with “Ale” in its name other than IPA). Use KNN classification to investigate this relationship. Provide statistical evidence one way or the other.</p>
+<p>Using the KNN classifier model we are able to predict whether a beer is a IPA or other Ale with 88.7% accuracy.We can see a relationship between IPA and other ales.</p>
+<pre class="r"><code>BBipa = BBmergedclean %&gt;% filter(str_detect(Style, regex(&quot;(IPA)&quot;, ignore_case = F))) #Create data set with just IPA
+head(BBipa) #Verify data set</code></pre>
+<pre><code>##   Brewery_id      Beer_name Beer_ID   ABV IBU
+## 1          1   Get Together    2692 0.045  50
+## 2          2 Citra Ass Down    2686 0.080  68
+## 3          2    Rico Sauvin    2678 0.076  68
+## 4          2   Pile of Face    2675 0.060  65
+## 5          4 Habitus (2014)    2668 0.080 100
+## 6          4          Solis    2667 0.075  85
+##                            Style Ounces              Brewery_name
+## 1                   American IPA     16        NorthGate Brewing 
+## 2 American Double / Imperial IPA     16 Against the Grain Brewery
+## 3 American Double / Imperial IPA     16 Against the Grain Brewery
+## 4                   American IPA     16 Against the Grain Brewery
+## 5 American Double / Imperial IPA     16 Mike Hess Brewing Company
+## 6                   American IPA     16 Mike Hess Brewing Company
+##          City State
+## 1 Minneapolis    MN
+## 2  Louisville    KY
+## 3  Louisville    KY
+## 4  Louisville    KY
+## 5   San Diego    CA
+## 6   San Diego    CA</code></pre>
+<pre class="r"><code>BBale = BBmergedclean %&gt;% filter(str_detect(Style, regex(&quot;(Ale)&quot;, ignore_case = F))) #Create data set with jus Ale
+head(BBale) #Verify data set</code></pre>
+<pre><code>##   Brewery_id        Beer_name Beer_ID   ABV IBU                   Style
+## 1          1       Wall&#39;s End    2690 0.048  19       English Brown Ale
+## 2          1          Pumpion    2689 0.060  38             Pumpkin Ale
+## 3          2           A Beer    2683 0.042  42 American Pale Ale (APA)
+## 4          2    Flesh Gourd&#39;n    2681 0.066  21             Pumpkin Ale
+## 5          2         Sho&#39;nuff    2680 0.040  13        Belgian Pale Ale
+## 6          2 Coq de la Marche    2677 0.051  38  Saison / Farmhouse Ale
+##   Ounces              Brewery_name        City State
+## 1     16        NorthGate Brewing  Minneapolis    MN
+## 2     16        NorthGate Brewing  Minneapolis    MN
+## 3     16 Against the Grain Brewery  Louisville    KY
+## 4     16 Against the Grain Brewery  Louisville    KY
+## 5     16 Against the Grain Brewery  Louisville    KY
+## 6     16 Against the Grain Brewery  Louisville    KY</code></pre>
+<pre class="r"><code>BBipa$Classifier = c(&#39;IPA&#39;) #Create column classifying everything as IPA
+BBale$Classifier = c(&#39;Ale&#39;) #Create a column classifying everything as Ale
+
+bbipa_ale = merge(BBipa, BBale, all = T) #Merge both data sets
+head(bbipa_ale) #Veryfy data set </code></pre>
+<pre><code>##   Brewery_id        Beer_name Beer_ID   ABV IBU
+## 1          1     Get Together    2692 0.045  50
+## 2          1          Pumpion    2689 0.060  38
+## 3          1       Wall&#39;s End    2690 0.048  19
+## 4          2           A Beer    2683 0.042  42
+## 5          2   Citra Ass Down    2686 0.080  68
+## 6          2 Coq de la Marche    2677 0.051  38
+##                            Style Ounces              Brewery_name
+## 1                   American IPA     16        NorthGate Brewing 
+## 2                    Pumpkin Ale     16        NorthGate Brewing 
+## 3              English Brown Ale     16        NorthGate Brewing 
+## 4        American Pale Ale (APA)     16 Against the Grain Brewery
+## 5 American Double / Imperial IPA     16 Against the Grain Brewery
+## 6         Saison / Farmhouse Ale     16 Against the Grain Brewery
+##          City State Classifier
+## 1 Minneapolis    MN        IPA
+## 2 Minneapolis    MN        Ale
+## 3 Minneapolis    MN        Ale
+## 4  Louisville    KY        Ale
+## 5  Louisville    KY        IPA
+## 6  Louisville    KY        Ale</code></pre>
+<pre class="r"><code>#Average KNN to find the best K
+splitPerc = .75
+iterations = 500
+numks = 30
+masterAcc = matrix(nrow = iterations, ncol = numks)
+
+for(j in 1:iterations)
+{
+  accs = data.frame(accuracy = numeric(30), k = numeric(30))
+  trainIndices = sample(1:dim(bbipa_ale)[1],round(splitPerc * dim(bbipa_ale)[1]))
+  train = bbipa_ale[trainIndices,]
+  test = bbipa_ale[-trainIndices,]
+  for(i in 1:numks)
+  {
+    classifications = knn(train[,c(4,5)],test[,c(4,5)],train$Classifier, prob = TRUE, k = i)
+    table(classifications,test$Classifier)
+    CM = confusionMatrix(table(classifications,test$Classifier))
+    masterAcc[j,i] = CM$overall[1]
+  }
+}
+MeanAcc = colMeans(masterAcc)
+plot(seq(1,numks,1),MeanAcc, type = &quot;l&quot;)</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>#See Confusion Matrix
+classifications = knn(train[,c(4,5)],test[,c(4,5)],train$Classifier, prob = TRUE, k = 5)
+table(classifications,test$Classifier)</code></pre>
+<pre><code>##                
+## classifications Ale IPA
+##             Ale 112  16
+##             IPA  18  92</code></pre>
+<pre class="r"><code>CM = confusionMatrix(table(classifications,test$Classifier))
+CM</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                
+## classifications Ale IPA
+##             Ale 112  16
+##             IPA  18  92
+##                                          
+##                Accuracy : 0.8571         
+##                  95% CI : (0.8061, 0.899)
+##     No Information Rate : 0.5462         
+##     P-Value [Acc &gt; NIR] : &lt;2e-16         
+##                                          
+##                   Kappa : 0.7123         
+##                                          
+##  Mcnemar&#39;s Test P-Value : 0.8638         
+##                                          
+##             Sensitivity : 0.8615         
+##             Specificity : 0.8519         
+##          Pos Pred Value : 0.8750         
+##          Neg Pred Value : 0.8364         
+##              Prevalence : 0.5462         
+##          Detection Rate : 0.4706         
+##    Detection Prevalence : 0.5378         
+##       Balanced Accuracy : 0.8567         
+##                                          
+##        &#39;Positive&#39; Class : Ale            
+## </code></pre>
+<p>QUESTION 9 Find one other useful inference from the data that you feel Budweiser may be able to find value in. You must convince them why it is important and back up your conviction with appropriate statistical evidence.</p>
+<p>We grouped each beer in to five categories based on their ounces for further analysis and plotted a bar chart. Looking at the bar chart we can see that the most common beer bottle size in most states is the Stubby which ranges from 11 to 12 ounces. Some states such as Indiana and Michigan seem to have more of the Long Neck/Heritage beer size which ranges from 12 to 22 ounces. In every state the least available beer bottle size seemed to be the Bomber which ranges from 22 to 32 ounces. This information can help guide future beer launches and what sizes to prioritize in what locations.</p>
+<pre class="r"><code>#Create new categorical column for bottle sizes
+BBmerged = BBmerged %&gt;% mutate(Use = cut(Ounces, breaks = c(8,11,12,22,32,63),
+                                         labels = c(&quot;Can&quot;, &quot;Stubby&quot;, &quot;Long Neck/Heritage&quot;, &quot;Bomber&quot;, &quot;Mini-Growler&quot;)))
+
+BBmerged = BBmerged %&gt;% rename(Size = Use) #Rename Column
+
+#Bar chart of Bottle sizes by state
+BBmerged %&gt;% ggplot(aes(State, fill = Size)) + geom_bar() + 
+  labs(title = &quot;Bottle Sizes by State&quot;, x = &quot;State&quot;, y = &quot;Bottle Size&quot;) + theme_economist()</code></pre>
+<p><img src="First-Project_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
